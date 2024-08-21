@@ -227,13 +227,13 @@
 	  <!--	  Begin No Pose DyCheck -->
 	  <hr>
 	  <div class="w3-center">
-	  <h2>Forget About Camera Pose!</h2>
+	  <h2>Don't Have Camera Pose?</h2>
 		  	  </div>
 
 	  <p>What if we pretend the background is moving? In this work, we can treat both
 		  the foreground <em> and </em> the background as dynamic content. Unlike previous work, this allows us to
 		  reason about the scene's 3D structure in the camera's frame of reference, i.e. without any provided camera poses.
-		  No more sweating over your workstation and hoping COLMAP converges on a highly dynamic video!
+		  No need to sweat over your workstation and hope that COLMAP (or your other favorite SLAM method) converges on a highly dynamic video!
 	  </p>
 
 	  <h4>DyCheck iPhone Dataset - No Camera Pose:</h4>
@@ -492,9 +492,9 @@
 	  <div class="w3-center">
 	    <h2>Real World Captures</h2>
 	  </div>
-	  <p>Finally, the best part about DGMarbles is that it works on real world videos. Here are
-	  a few videos from Davis, YouTube-VOS, and other online sources. Note that we did NOT precompute camera poses
-	  on any of the below videos!</p>
+	  <p>Finally, the best part about DGMarbles is that it works out-of-the-box on real world videos. Here are
+	  a few videos from Davis, YouTube-VOS, and other online sources. Note that to save ourselves time and headache,
+		  we did NOT estimate camera poses on any of the below videos, and simply passed the video into our method.</p>
 
 		<h3>DAVIS</h3>
 		<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:10px;">
@@ -580,6 +580,56 @@
 		</tr>
 	  </table>
 
+
+<!--		===============================================================================================-->
+<!--		===============================================================================================-->
+<!--		===============================================================================================-->
+	<br>
+	<br>
+	  <div class="w3-center">
+	    <h2>Limitations - Tracking through Total Occlusion</h2>
+	  </div>
+	  <p>Still, open-world dynamic and monocular novel view synthesis is an extremely challenging problem, and
+		  DGMarbles certainly has limitations. One key limitation is the quality of off-the-shelf 2D priors.
+		  For instance, when off-the-shelf tracking fails and a total occlusion occurs, DGMarbles may also fail to track the occluded object.
+		  This usually results in "duplicating" the object and "teleporting" from it the first to the second copy. Here's an example:</p>
+
+		<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+	    <tr style="padding:0px">
+	      <td style="padding-right:1%;width:32%;vertical-align:middle">
+		<div align="center">CoTracker Tracking Prediction</div>
+	      </td>
+	      <td style="padding-right:1%;width:26%;vertical-align:middle">
+		<div align="center">Gaussian Marbles (Training View)</div>
+	      </td>
+	      <td style="padding-right:1%;width:32%;vertical-align:middle">
+		<div align="center">Gaussian Marbles (Novel Views)</div>
+	      </td>
+	    </tr>
+	  </table>
+
+		<table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;margin-top:10px;">
+		<tr style="padding:0px">
+		  <td style="padding-right:1%;width:32%;vertical-align:middle">
+		<video controls style="width:100%;max-width:100%" autoplay="true" loop="true" playsinline="true" muted="true">
+		  <source src="videos/plantocclusion_cotracker.mp4" type="video/mp4">Sorry, your browser doesn't support embedded videos.
+		</video>
+
+		  </td>
+	      <td style="padding-right:1%;width:26%;vertical-align:middle">
+		<video controls style="width:100%;max-width:100%" autoplay="true" loop="true" playsinline="true" muted="true">
+		  <source src="videos/plantocclusion_ours_tracking.mp4" type="video/mp4">Sorry, your browser doesn't support embedded videos.
+		</video>
+
+		  </td>
+		  <td style="padding-right:1%;width:32%;vertical-align:middle">
+		<video controls style="width:100%;max-width:100%" autoplay="true" loop="true" playsinline="true" muted="true">
+		  <source src="videos/plantocclusion_ours_nvs.mp4" type="video/mp4">Sorry, your browser doesn't support embedded videos.
+		</video>
+
+		  </td>
+		</tr>
+	  </table>
 	  
 	  <!-- end paper container -->
 
